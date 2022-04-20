@@ -1,11 +1,12 @@
-import React,{useEffect} from "react";
+import React from "react";
 import { Row, Col } from "react-bootstrap";
-import { useSelector,useDispatch } from "react-redux";
-import {expenseSlice} from '../reducers/amountReducer'
+import { useSelector } from "react-redux";
+//import {expenseSlice} from '../reducers/amountReducer'
 
 const IncomeExpense = () => {
-  const dispatch = useDispatch()
- const {expenses} = useSelector((state) => state.expenseSlice)
+  
+ const {expenses,income} = useSelector((state) => state.expenseSlice)
+ 
  
   return (
     <>
@@ -17,12 +18,12 @@ const IncomeExpense = () => {
           </div>
           
         </Col>
-        {/* <Col md={6}>
+        <Col md={6}>
           <div className="d-flex gap-3">
             <h4>Income:</h4>
-            <p className="mt-1">$1,500.00</p>
+            <p className="mt-1">{income}</p>
           </div>
-        </Col> */}
+        </Col>
       </Row>
     </>
   );
