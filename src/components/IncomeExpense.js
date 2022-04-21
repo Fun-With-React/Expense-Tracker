@@ -1,11 +1,9 @@
-import React from "react";
 import { Row, Col } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import TransactionList from "./TransactionList";
-//import {expenseSlice} from '../reducers/amountReducer'
 
 const IncomeExpense = () => {
-  const { expenses, income } = useSelector((state) => state.expenseSlice);
+  const { expenses, income, listExpense } = useSelector((state) => state.expenseSlice);
 
   return (
     <>
@@ -13,18 +11,18 @@ const IncomeExpense = () => {
         <Col md={6}>
           <div className="d-flex gap-3">
             <h4>Expenses:</h4>
-            <p className="mt-1">{expenses}</p>
+            <p className="mt-1">${expenses}</p>
           </div>
-          <TransactionList />
-          <TransactionList />
-          <TransactionList />
-          <TransactionList />
+          {listExpense.map((expen, index) => (
+            <TransactionList key={index} money={expen.money} date={expen.currentTime} text={expen.text} />
+          ))}
         </Col>
         <Col md={6}>
           <div className="d-flex gap-3">
             <h4>Income:</h4>
             <p className="mt-1">{income}</p>
           </div>
+
           <TransactionList />
           <TransactionList />
           <TransactionList />
