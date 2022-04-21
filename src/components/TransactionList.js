@@ -1,4 +1,8 @@
+
+import { useSelector } from "react-redux";
+
 const TransactionList = ({ text, money, date }) => {
+  const {expenses,income} = useSelector((state) => state.expenseSlice)
   return (
     <>
       <div className=" d-flex align-items-center justify-content-between rounded-pill py-1 px-2 my-2 bg-primary">
@@ -9,7 +13,7 @@ const TransactionList = ({ text, money, date }) => {
             <p className="m-0 fs-6 lh-1">{date}</p>
           </div>
         </div>
-        <p className="m-0">-${money}</p>
+        <p className="m-0">{income? Number(money): -Number(money)}</p>
       </div>
     </>
   );
