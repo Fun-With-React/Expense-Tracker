@@ -14,29 +14,27 @@ const AddIncomeExpense = () => {
   const amountincRef = useRef();
   const textincRef = useRef();
   const expenseToDispatch = () => {
-    if(!amount){
-      <p>Please enter a transaction</p>
-    } else{
-    dispatch(addExpense(amount));
+    if(amount){
+      dispatch(addExpense(amount));
     dispatch(addListExpense({ text: type, money: amount, currentTime: listDate }));
-
     amountRef.current.value = "";
     textRef.current.value = "";
     setAmount(0);
     setType("");
+          } else{
+    alert("Please enter a transaction")
     }
   };
 
   const incomeToDispatch = () => {
-   if(!amount){
-     <p>Please enter a transaction</p>
-   } else{
+   if(amount){
     dispatch(addIncome(amount));
     dispatch(addListIncome({ text: type, money: amount, currentTime: listDate }));
     amountincRef.current.value = "";
     textincRef.current.value = "";
     setAmount(0);
-    setType("");
+    } else{
+    alert("Please enter a transaction")
    }
   };
 
