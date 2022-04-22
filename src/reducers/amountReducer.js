@@ -5,8 +5,8 @@ export const expenseSlice = createSlice({
     expenses: 0,
     income: 0,
     balance: 0,
-    listExpense: [],
-    listIncome: []
+    listExpense: localStorage.getItem('listExpense')? JSON.parse(localStorage.getItem('listExpense')) : [],
+    listIncome: localStorage.getItem('listIncome')? JSON.parse(localStorage.getItem('listIncome')) : []
   },
   reducers: {
     addExpense: (state, action) => {
@@ -20,9 +20,11 @@ export const expenseSlice = createSlice({
     },
     addListExpense: (state, action) => {
       state.listExpense.push(action.payload);
+      localStorage.setItem('listExpense',JSON.stringify(state.listExpense))
     },
     addListIncome:(state,action) => {
       state.listIncome.push(action.payload)
+      localStorage.setItem('listIncome',JSON.stringify(state.listIncome))
     }
   },
 });
