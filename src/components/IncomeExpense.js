@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import TransactionList from "./TransactionList";
 
 const IncomeExpense = () => {
-  const { expenses, income, listExpense ,listIncome} = useSelector((state) => state.expenseSlice);
+  const { expenses, income, listExpense, listIncome } = useSelector((state) => state.expenseSlice);
 
   return (
     <>
@@ -13,8 +13,8 @@ const IncomeExpense = () => {
             <h4>Expenses:</h4>
             <p className="mt-1">${expenses}</p>
           </div>
-          {listExpense.map((expen, index) => (
-            <TransactionList key={index} money={expen.money} date={expen.currentTime} text={expen.text} />
+          {listExpense.map((expense, index) => (
+            <TransactionList key={index} money={`-$${expense.money}`} date={expense.currentTime} text={expense.text} />
           ))}
         </Col>
         <Col md={6}>
@@ -22,8 +22,8 @@ const IncomeExpense = () => {
             <h4>Income:</h4>
             <p className="mt-1">{income}</p>
           </div>
-        {listIncome.map((expen,index) => (
-          <TransactionList key={index} money={expen.money} data={expen.currentTime} text={expen.text}/>
+          {listIncome.map((income, index) => (
+            <TransactionList key={index} money={`$${income.money}`} date={income.currentTime} text={income.text} />
           ))}
         </Col>
       </Row>
