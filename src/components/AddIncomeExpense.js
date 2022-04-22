@@ -38,11 +38,11 @@ const AddIncomeExpense = () => {
     <>
       <Row>
         <Col md={6}>
-          <Form style={{ padding: "20px" }}>
+          <Form style={{ padding: "20px",marginLeft: "70px"}}>
             <Form.Group controlId="name">
               <Form.Label> Add Expenses : </Form.Label>
 
-              <Form.Control
+              <Form.Control 
                 type="name"
                 style={{ width: "25%", marginTop: "4px" }}
                 onChange={(e) => setAmount(Number(e.target.value))}
