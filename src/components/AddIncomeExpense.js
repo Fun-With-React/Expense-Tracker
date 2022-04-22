@@ -6,7 +6,6 @@ import { addExpense, addIncome, addListExpense, addListIncome } from "../reducer
 const AddIncomeExpense = () => {
   const [amount, setAmount] = useState(0);
   const [type, setType] = useState("");
-  const [type1, setType1] = useState("");
   const listDate = new Date(Date.now()).toLocaleString("en-US", { month: "short" }) + " " + new Date().getDate() + ", " + new Date().getFullYear();
   const dispatch = useDispatch();
 
@@ -24,7 +23,7 @@ const AddIncomeExpense = () => {
 
   const incomeToDispatch = () => {
     dispatch(addIncome(amount));
-    dispatch(addListIncome({ text: type1, money: amount, currentTime: listDate }));
+    dispatch(addListIncome({ text: type, money: amount, currentTime: listDate }));
   };
 
   return (
@@ -50,7 +49,7 @@ const AddIncomeExpense = () => {
               <Form.Label> Add Income: </Form.Label>
 
               <Form.Control type="name" style={{ width: "25%", marginTop: "4px" }} placeholder="Enter amount" onChange={(e) => setAmount(Number(e.target.value))}></Form.Control>
-              <Form.Control className="my-2" type="name" style={{ width: "70%" }} onChange={(e) => setType1(e.target.value)} placeholder="Enter type of income"></Form.Control>
+              <Form.Control className="my-2" type="name" style={{ width: "70%" }} onChange={(e) => setType(e.target.value)} placeholder="Enter type of income"></Form.Control>
             </Form.Group>
             <Button className="my-3" onClick={() => incomeToDispatch()}>
               Add Income

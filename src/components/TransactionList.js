@@ -1,5 +1,3 @@
-import { useSelector } from "react-redux";
-
 const TransactionList = ({ text, money, date }) => {
   return (
     <>
