@@ -20,7 +20,7 @@ const IncomeExpense = () => {
         <Col md={6}>
           <div className="d-flex gap-3">
             <h4>Income:</h4>
-            <p className="mt-1">{income}</p>
+            <p className="mt-1">${income}</p>
           </div>
         {listIncome.map((expen,index) => (
           <TransactionList key={index} money={expen.money} data={expen.currentTime} text={expen.text}/>
