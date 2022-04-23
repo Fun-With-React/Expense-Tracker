@@ -1,14 +1,16 @@
 
-import { useSelector } from "react-redux";
 
-const TransactionList = ({ text, money, date }) => {
-  const { listExpense } = useSelector((state) => state.expenseSlice);
-  const deleteItem = () => {
-    
-    listExpense.map((item) => {
-      return listExpense.splice(item, 1);
-    });
-  };
+import { useDispatch } from "react-redux";
+import { deleteExpenseFromLocalStorage,deleteIncomeFromLocalStorage} from "../reducers/amountReducer";
+
+const TransactionList = ({ id,text, money, date }) => {
+  
+ const dispatch = useDispatch()
+  const deleteItem = (id) => {
+       dispatch(deleteExpenseFromLocalStorage(id))
+      dispatch(deleteIncomeFromLocalStorage(id))
+  
+      };
 
   return (
     <>
@@ -27,7 +29,7 @@ const TransactionList = ({ text, money, date }) => {
         </div>
         <p className="m-0">{money}</p>
         <i
-          className="fa-solid fa-trash-can mx-3" onClick={() => deleteItem()}
+          className="fa-solid fa-trash-can mx-3" onClick={() => deleteItem(id)}
         ></i>
       </div>
     </>

@@ -25,9 +25,22 @@ export const expenseSlice = createSlice({
     addListIncome:(state,action) => {
       state.listIncome.push(action.payload)
       localStorage.setItem('listIncome',JSON.stringify(state.listIncome))
+    },
+    deleteExpenseFromLocalStorage:(state,action) => {
+      const newList = JSON.parse(localStorage.getItem('listExpense'))
+      state.listExpense = newList.filter((each)=> {
+        return each.id !== action.payload
+              })
+      localStorage.setItem('listExpense', JSON.stringify(state.listExpense))
+    },
+    deleteIncomeFromLocalStorage: (state,action) => {
+      const newList = JSON.parse(localStorage.getItem('listIncome'))
+      state.listIncome = newList.filter((each) =>{
+        return each.id !== action.payload
+      })
     }
   },
 });
 
-export const { addExpense, addIncome, addListExpense, addListIncome } = expenseSlice.actions;
+export const { addExpense, addIncome, addListExpense, addListIncome,deleteExpenseFromLocalStorage,deleteIncomeFromLocalStorage } = expenseSlice.actions;
 export default expenseSlice.reducer;
