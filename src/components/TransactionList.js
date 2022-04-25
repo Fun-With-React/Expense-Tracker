@@ -6,6 +6,7 @@ const TransactionList = ({ id, text, money, date }) => {
   const deleteItem = (id) => {
     dispatch(deleteExpenseFromLocalStorage(id));
     dispatch(deleteIncomeFromLocalStorage(id));
+    
   };
 
   return (
