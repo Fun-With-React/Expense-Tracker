@@ -33,13 +33,13 @@ export const expenseSlice = createSlice({
               })
       localStorage.setItem('listExpense', JSON.stringify(state.listExpense))
     },
-    deleteIncomeFromLocalStorage: (state,action) => {
-      const newList = JSON.parse(localStorage.getItem('listIncome'))
-      state.listIncome = newList.filter((each) =>{
-        return each.id !== action.payload
-      })
-      localStorage.setItem('listIncome', JSON.stringify(state.listIncome))
-    }
+    // deleteIncomeFromLocalStorage: (state,action) => {
+    //   const newList = JSON.parse(localStorage.getItem('listIncome'))
+    //   state.listIncome = newList.filter((each) =>{
+    //     return each.id !== action.payload
+    //   })
+    //   localStorage.setItem('listIncome', JSON.stringify(state.listIncome))
+    // }
   },
 });
 
