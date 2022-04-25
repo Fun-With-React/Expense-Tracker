@@ -8,7 +8,6 @@ const TransactionList = ({ id, text, money, date }) => {
     dispatch(deleteIncomeFromLocalStorage(id));
     
   };
-
   return (
     <>
       <div className=" d-flex align-items-center justify-content-between rounded-pill py-1 px-2 my-2 bg-primary">
