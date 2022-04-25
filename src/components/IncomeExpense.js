@@ -23,7 +23,7 @@ const IncomeExpense = () => {
             <p className="mt-1">{income}</p>
           </div>
           {listIncome.map((income, index) => (
-             <TransactionList key={index} id={income.id} money={`$${income.money}`} date={income.currentTime} text={income.text} />
+            <TransactionList key={index} id={income.id} money={`$${income.money}`} date={income.currentTime} text={income.text} />
           ))}
         </Col>
       </Row>
