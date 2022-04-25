@@ -1,12 +1,14 @@
 import AddIncomeExpense from "./components/AddIncomeExpense";
 import Balance from "./components/Balance";
 import IncomeExpense from "./components/IncomeExpense";
-
+import Header from "./components/Header";
+import History from "./components/History";
 
 function App() {
   return (
     <>
-    <h1 className='heading'>Expense Tracker</h1>
+    <Header/>
+    <History/>
     <Balance />
     <IncomeExpense />
     <AddIncomeExpense />

@@ -38,6 +38,7 @@ export const expenseSlice = createSlice({
       state.listIncome = newList.filter((each) =>{
         return each.id !== action.payload
       })
+      localStorage.setItem('listIncome', JSON.stringify(state.listIncome))
     }
   },
 });
