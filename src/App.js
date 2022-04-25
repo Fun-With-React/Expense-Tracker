@@ -1,17 +1,27 @@
-import AddIncomeExpense from "./components/AddIncomeExpense";
-import Balance from "./components/Balance";
+import { Container } from "react-bootstrap";
+import { BrowserRouter as Router,Route, Routes } from "react-router-dom";
+
 import Header from "./components/Header";
-import IncomeExpense from "./components/IncomeExpense";
+import History from "./components/History";
+
+
+import Home from "./components/Home";
 
 
 function App() {
   return (
     <>
-    <Header/>
-    <Balance />
-    <IncomeExpense />
-    <AddIncomeExpense />
-    
+    <Router>
+   <Header/>
+   <main className="py-3">
+    <Container>
+    <Routes>
+    <Route path="/" element={<Home/>} />
+    <Route path="/history" element={<History />} />
+    </Routes>
+    </Container>
+    </main>
+    </Router>
     </>
   );
 }
