@@ -1,4 +1,4 @@
-import { Container } from "react-bootstrap";
+
 import { BrowserRouter as Router,Route, Routes } from "react-router-dom";
 
 import Header from "./components/Header";
@@ -14,12 +14,11 @@ function App() {
     <Router>
    <Header/>
    <main className="py-3">
-    <Container>
     <Routes>
     <Route path="/" element={<Home/>} />
     <Route path="/history" element={<History />} />
     </Routes>
-    </Container>
+ 
     </main>
     </Router>
     </>
