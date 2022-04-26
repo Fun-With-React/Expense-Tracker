@@ -6,11 +6,10 @@ const TransactionList = ({ id, text, money, date }) => {
   const deleteItem = (id) => {
     dispatch(deleteExpenseFromLocalStorage(id));
     dispatch(deleteIncomeFromLocalStorage(id));
-    
   };
   return (
     <>
-      <div className=" d-flex align-items-center justify-content-between rounded-pill py-1 px-2 my-2 bg-primary">
+      <div className=" d-flex align-items-center justify-content-between rounded-pill py-1 px-2 my-2 bg-primary w-auto">
         <div className="d-flex align-items-center">
           <img src="https://picsum.photos/100" style={{ width: "50px" }} className="  p-1 bg-light rounded-circle" alt="logo" />
           <div className="detail mx-3">
