@@ -12,14 +12,14 @@ const IncomeExpense = () => {
       <Row style={{ padding: "100px" }}>
         <Col md={6}>
           <Expense expense={expenses} />
-          {listExpense.map((expense, index) => (
+          {listExpense.slice(-4).map((expense, index) => (
             <TransactionList key={index} id={expense.id} money={`-$${expense.money}`} date={expense.currentTime} text={expense.text} />
           ))}
         </Col>
         <Col md={6}>
           <Income income={income} />
-          {listIncome.map((income, index) => (
-            <TransactionList key={index} id={income.id} money={`$${income.money}`} date={income.currentTime} text={income.text} />
+          {listIncome.slice(-4).map((income, index) => (
+            <TransactionList key={index} id={income.id} money={`-$${income.money}`} date={income.currentTime} text={income.text} />
           ))}
         </Col>
       </Row>
