@@ -9,7 +9,7 @@ import Income from "./Income";
 import TransactionList from "./TransactionList";
 
 const History = () => {
-  const { expenses, income } = useSelector((state) => state.expenseSlice);
+  const { expenses, income ,listToHistory} = useSelector((state) => state.expenseSlice);
   return (
     <>
       <Balance />
@@ -32,7 +32,9 @@ const History = () => {
             </Form.Select>
           </Col>
           <Col md={8}>
-            <TransactionList />
+          {listToHistory.map((historyList, index) => (
+            <TransactionList key={index} id={historyList?.expense?.id || historyList?.income?.id} money={`${historyList?.expense?.money || historyList?.income?.money}`} date={historyList?.expense?.currentTime || historyList?.income?.currentTime} text={historyList?.expense?.text || historyList?.income?.text} />
+          ))}
           </Col>
         </Row>
       </Container>
