@@ -16,7 +16,9 @@ const AddIncomeExpense = () => {
   const expenseToDispatch = () => {
     if(amount){
       dispatch(addExpense(amount));
-    dispatch(addListExpense({ id: Date.now(),text: type, money: amount, currentTime: listDate }));
+    dispatch(addListExpense({ id: Date.now(),text: type, money: `-$${amount}`, currentTime: listDate }));
+    console.log(type)
+    
     amountRef.current.value = "";
     textRef.current.value = "";
     setAmount(0);
@@ -29,10 +31,11 @@ const AddIncomeExpense = () => {
   const incomeToDispatch = () => {
    if(amount){
     dispatch(addIncome(amount));
-    dispatch(addListIncome({ id: Date.now(),text: type, money: amount, currentTime: listDate }));
-    amountincRef.current.value = "";
+    dispatch(addListIncome({ id: Date.now(),text: type, money: `$${amount}`, currentTime: listDate }));
+         amountincRef.current.value = "";
     textincRef.current.value = "";
     setAmount(0);
+    setType(""); //
     } else{
     alert("Please enter a transaction")
    }

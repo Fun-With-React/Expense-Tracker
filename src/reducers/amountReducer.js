@@ -7,7 +7,8 @@ export const expenseSlice = createSlice({
     balance: 0,
     listExpense: localStorage.getItem("listExpense") ? JSON.parse(localStorage.getItem("listExpense")) : [],
     listIncome: localStorage.getItem("listIncome") ? JSON.parse(localStorage.getItem("listIncome")) : [],
-  },
+    listToHistory: localStorage.getItem("listExpenseHistory") ? JSON.parse(localStorage.getItem("listExpenseHistory")) : [],
+      },
   reducers: {
     addExpense: (state, action) => {
       state.expenses += action.payload;
@@ -20,11 +21,15 @@ export const expenseSlice = createSlice({
     },
     addListExpense: (state, action) => {
       state.listExpense.push(action.payload);
+      state.listToHistory.push({expense:action.payload})
       localStorage.setItem("listExpense", JSON.stringify(state.listExpense));
+      localStorage.setItem("listToHistory", JSON.stringify(state.listToHistory));
     },
     addListIncome: (state, action) => {
       state.listIncome.push(action.payload);
+      state.listToHistory.push({income:action.payload})
       localStorage.setItem("listIncome", JSON.stringify(state.listIncome));
+      localStorage.setItem("listToHistory", JSON.stringify(state.listToHistory));
     },
     deleteExpenseFromLocalStorage: (state, action) => {
       const newList = JSON.parse(localStorage.getItem("listExpense"));
@@ -39,7 +44,8 @@ export const expenseSlice = createSlice({
         return each.id !== action.payload;
       });
       localStorage.setItem("listIncome", JSON.stringify(state.listIncome));
-    },
+    }
+    
   },
 });
 
