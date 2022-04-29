@@ -14,38 +14,37 @@ const AddIncomeExpense = () => {
   const amountincRef = useRef();
   const textincRef = useRef();
   const expenseToDispatch = () => {
-    if(amount){
+    if (amount) {
       dispatch(addExpense(amount));
-    dispatch(addListExpense({ id: Date.now(),text: type, money: `-$${amount}`, currentTime: listDate }));
-    console.log(type)
-    
-    amountRef.current.value = "";
-    textRef.current.value = "";
-    setAmount(0);
-    setType("");
-          } else{
-    alert("Please enter a transaction")
+      dispatch(addListExpense({ id: Date.now(), text: type, money: `-$${amount}`, currentTime: listDate }));
+
+      amountRef.current.value = "";
+      textRef.current.value = "";
+      setAmount(0);
+      setType("");
+    } else {
+      alert("Please enter a transaction");
     }
   };
 
   const incomeToDispatch = () => {
-   if(amount){
-    dispatch(addIncome(amount));
-    dispatch(addListIncome({ id: Date.now(),text: type, money: `$${amount}`, currentTime: listDate }));
-         amountincRef.current.value = "";
-    textincRef.current.value = "";
-    setAmount(0);
-    setType(""); //
-    } else{
-    alert("Please enter a transaction")
-   }
+    if (amount) {
+      dispatch(addIncome(amount));
+      dispatch(addListIncome({ id: Date.now(), text: type, money: `$${amount}`, currentTime: listDate }));
+      amountincRef.current.value = "";
+      textincRef.current.value = "";
+      setAmount(0);
+      setType("");
+    } else {
+      alert("Please enter a transaction");
+    }
   };
 
   return (
     <>
       <Row>
         <Col md={6}>
-          <Form style={{ padding: "20px",marginLeft:"70px" }}>
+          <Form style={{ padding: "20px", marginLeft: "70px" }}>
             <Form.Group controlId="name">
               <Form.Label> Add Expenses : </Form.Label>
 
