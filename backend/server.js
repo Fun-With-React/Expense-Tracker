@@ -1,6 +1,10 @@
-//import express from 'express';
+
 const express = require ('express')
+const dotenv = require('dotenv');
+const connectDB = require('./config/db.js')
 const app = express()
+dotenv.config();
+connectDB();
 
 app.get('/',(req,res) => {
     res.send("Hello expense tracker")
