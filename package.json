@@ -4,7 +4,7 @@
   "description": "my project",
   "main": "index.js",
   "scripts": {
-    "start": "node backend/server",
+    "start": "nodemon backend/server",
     "dev": "concurrently \"cd backend && npm run start\" \"cd frontend && npm start\" "
   },
   "repository": {
