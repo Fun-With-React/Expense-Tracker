@@ -11,11 +11,11 @@ const History = () => {
   const { expenses, income, listToHistory } = useSelector((state) => state.expenseSlice);
   const [list, setList] = useState(listToHistory);
 
-  let checkChange = [];
+  let selectChange = [];
   const getSelection = (selected) => {
-    checkChange.length = "";
-    if (!checkChange.length) {
-      checkChange.push(selected);
+    selectChange.length = "";
+    if (!selectChange.length) {
+      selectChange.push(selected);
     }
   };
 
@@ -24,18 +24,18 @@ const History = () => {
     let monthNumberList = new Date(list?.expense?.id || list?.income?.id).getMonth() + 1;
     let yearNumberList = new Date(list?.expense?.id || list?.income?.id).getFullYear();
 
-    if (checkChange[0] === "week") {
+    if (selectChange[0] === "week") {
       if (new Date().getFullYear() === yearNumberList && new Date().getMonth() + 1 === monthNumberList && new Date().getDate() - 20 <= dayNumberList) {
         return list;
       }
     }
 
-    if (checkChange[0] === "month") {
+    if (selectChange[0] === "month") {
       if ((new Date().getFullYear() === yearNumberList && new Date().getMonth() + 1 === monthNumberList) || new Date().getMonth() + 1 !== monthNumberList) {
         return list;
       }
     }
-    if (checkChange[0] === "year") {
+    if (selectChange[0] === "year") {
       if (new Date().getFullYear() !== yearNumberList || new Date().getFullYear() === yearNumberList) {
         return list;
       }
