@@ -1,30 +1,58 @@
 const Users = require("../schema/userModel");
 
 exports.register = async (req, res) => {
-//   const user = new User(req.body);
-//   user.register();
-//   console.log("%c 🧛‍♀️: exports.register -> req ", "font-size:16px;background-color:#04f9b1;color:black;", req.body);
-const { name,email,password } = req.body
-const userExists = await Users.findOne({email})
+  const { name, email, confirmEmail, password } = req.body;
 
-if(userExists) {
-  res.status(400)
-  throw newError('User already exists')
-}
-const user = await Users.create({
-  name, email, password
-})
-if(user){
-  res.status(201).json({
-    _id: user._id,
-    name: user.name,
-    email: user.email,
-    
-  })
-} else{
-  res.status(400)
-  throw new Error('Invalid user data')
-}
+  const userExists = await Users.findOne({ email });
+
+  if (userExists) {
+    res.status(409).send({
+      status: "User already exists",
+    });
+    return;
+  }
+  try {
+    const user = await Users.create({
+      name,
+      email,
+      password,
+    });
+    if (user) {
+      res.status(201).send({
+        status: "Registered Succesful",
+      });
+      return;
+    }
+  } catch (error) {
+    res.status(400).send({
+      status: " Please Try Again Later",
+      data: error,
+    });
+  }
 };
 
-exports.login = (req, res) => {};
+exports.login = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const userExists = await Users.findOne({ email });
+
+    if (userExists && userExists.password === password) {
+      res.status(200).send({
+        status: "Succesful Login",
+        data: userExists,
+      });
+      return;
+    } else {
+      res.status(403).send({
+        status: "Password/Email Wrong",
+      });
+      return;
+    }
+  } catch (error) {
+    res.status(400).send({
+      status: " Please Try Again Later",
+      data: error,
+    });
+  }
+};
