@@ -1,11 +1,30 @@
 import { Button, Col, Container, Form, FormControl, Row } from "react-bootstrap";
+import axios from "axios";
+import { useState } from "react";
 
 const Register = () => {
+  const [message, setMessage] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target),
       formDataObj = Object.fromEntries(formData.entries());
-    console.log(formDataObj);
+    // const { name, email, confirmEmail, password } = formDataObj;
+
+    axios({
+      method: "POST",
+      url: "http://localhost:5000/register",
+      data: formDataObj,
+      headers: { "Content-Type": "application/json" },
+    })
+      .then(function (response) {
+        setMessage(response.data.status);
+
+        //handle success
+      })
+      .catch(function (err) {
+        setMessage(err.response.data.status);
+        //handle error
+      });
   };
   return (
     <Container className="w-100">
@@ -13,6 +32,7 @@ const Register = () => {
         <Col md="0">
           <Form onSubmit={handleSubmit}>
             <p className="h4 text-center mb-4">New Account Sign up Please.</p>
+            <p className="h4 text-center mb-4">{message}</p>
             <Form.Label htmlFor="defaultFormRegisterNameEx" className="grey-text">
               Your name
             </Form.Label>
