@@ -1,3 +1,4 @@
+const bcrypt = require("bcryptjs");
 const Users = require("../schema/userModel");
 
 exports.register = async (req, res) => {
@@ -37,7 +38,8 @@ exports.login = async (req, res) => {
   try {
     const userExists = await Users.findOne({ email });
 
-    if (userExists && userExists.password === password) {
+    //if (userExists && userExists.password === password) {
+      if (userExists && bcrypt.compare(password,userExists.password)) {
       res.status(200).send({
         status: "Succesful Login",
         data: userExists,
