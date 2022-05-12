@@ -38,8 +38,7 @@ exports.login = async (req, res) => {
   try {
     const userExists = await Users.findOne({ email });
 
-    //if (userExists && userExists.password === password) {
-      if (userExists && bcrypt.compare(password,userExists.password)) {
+    if (userExists && bcrypt.compareSync(password, userExists.password)) {
       res.status(200).send({
         status: "Succesful Login",
         data: userExists,

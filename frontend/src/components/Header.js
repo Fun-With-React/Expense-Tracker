@@ -2,8 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import Login from "./Login";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const { serverMessage } = useSelector((state) => state.loginSlice);
+
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -12,11 +15,8 @@ const Header = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto gap-4">
-            <Link to="/dashboard"> Dashboard </Link>
-            <Link to="/history"> History </Link>
-          </Nav>
-          <Login />
+          <Nav className="me-auto gap-4">{serverMessage === "Succesful Login" ? <Link to="/history"> History </Link> : ""}</Nav>
+          {serverMessage === "Succesful Login" ? "" : <Login />}
         </Navbar.Collapse>
       </Container>
     </Navbar>
