@@ -16,7 +16,7 @@ const Login = () => {
       headers: { "Content-Type": "application/json" },
     })
       .then(function (response) {
-        dispatch(saveToken(token));
+        dispatch(saveToken(response.data.token));
         //handle success
       })
       .catch(function (err) {
@@ -25,6 +25,8 @@ const Login = () => {
         //handle error
       });
   };
+
+  
   return (
     <>
       <Form onSubmit={handleSubmit}>
@@ -32,8 +34,10 @@ const Login = () => {
           {token ? (
             <div className="alert alert-warning mb-0 p-2" role="alert">
               {token}
+             
             </div>
           ) : (
+
             ""
           )}
           <Form.Group className="mb-0" controlId="formBasicEmail">
@@ -45,6 +49,7 @@ const Login = () => {
           <Button variant="primary" type="submit">
             Login
           </Button>
+          
         </Stack>
       </Form>
     </>
