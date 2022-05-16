@@ -2,11 +2,11 @@
   "name": "expense-tracker-1",
   "version": "1.0.0",
   "description": "my project",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "nodemon backend/server",
     "dev": "concurrently \"cd backend && npm run start\" \"cd frontend && npm start\" ", 
-    "heroku-postbuild":"npm install --prefix frontend && npm run build --prefix frontend"
+    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
   "repository": {
     "type": "git",
