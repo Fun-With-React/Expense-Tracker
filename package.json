@@ -6,6 +6,7 @@
   "scripts": {
     "start": "nodemon backend/server",
     "dev": "concurrently \"cd backend && npm run start\" \"cd frontend && npm start\" ", 
+    "local": "nodemon backend/server",
     "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
   "repository": {
