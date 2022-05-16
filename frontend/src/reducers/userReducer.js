@@ -14,11 +14,14 @@ export const loginSlice = createSlice({
     },
     saveToken: (state,action) => {
       state.token = action.payload
+    },
+    logOut: (state) =>{
+        state.token = localStorage.removeItem('token')
     }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { loginSubmit,saveToken } = loginSlice.actions;
+export const { loginSubmit,saveToken,logOut } = loginSlice.actions;
 
 export default loginSlice.reducer;
