@@ -9,7 +9,7 @@ import History from "./components/History";
 import Home from "./components/Home";
 
 function App() {
-  const { serverMessage } = useSelector((state) => state.loginSlice);
+  const { token } = useSelector((state) => state.loginSlice);
 
   return (
     <>
@@ -17,7 +17,7 @@ function App() {
         <Header />
         <main className="py-3">
           <Routes>
-            <Route path="/" element={serverMessage === "Succesful Login" ? <Home /> : <Guest />} />
+            <Route path="/" element={token ? <Home /> : <Guest />} />
             <Route element={<RequireAuth />}>
               <Route path="/history" element={<History />} />
             </Route>

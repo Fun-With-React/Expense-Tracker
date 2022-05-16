@@ -1,10 +1,10 @@
 import { Button, Form, Stack } from "react-bootstrap";
-import { loginSubmit } from "../reducers/userReducer";
+import { saveToken } from "../reducers/userReducer";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 const Login = () => {
   const dispatch = useDispatch();
-  const { serverMessage } = useSelector((state) => state.loginSlice);
+  const { token } = useSelector((state) => state.loginSlice);
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target),
@@ -16,11 +16,11 @@ const Login = () => {
       headers: { "Content-Type": "application/json" },
     })
       .then(function (response) {
-        dispatch(loginSubmit(response.data.status));
+        dispatch(saveToken(token));
         //handle success
       })
       .catch(function (err) {
-        dispatch(loginSubmit(err.response.data.status));
+        dispatch(saveToken(err.response.data.status));
 
         //handle error
       });
@@ -29,9 +29,9 @@ const Login = () => {
     <>
       <Form onSubmit={handleSubmit}>
         <Stack direction="horizontal" className="" gap={3}>
-          {serverMessage ? (
+          {token ? (
             <div className="alert alert-warning mb-0 p-2" role="alert">
-              {serverMessage}
+              {token}
             </div>
           ) : (
             ""

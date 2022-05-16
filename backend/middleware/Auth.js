@@ -20,5 +20,4 @@ const protect = async(req,res,next) => {
         throw new Error('Not authorized, token invalid')
     }
 }
-
 module.exports =  protect

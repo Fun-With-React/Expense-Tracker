@@ -5,7 +5,7 @@ import Login from "./Login";
 import { useSelector } from "react-redux";
 
 const Header = () => {
-  const { serverMessage } = useSelector((state) => state.loginSlice);
+  const { token } = useSelector((state) => state.loginSlice);
 
   return (
     <Navbar bg="light" expand="lg">
@@ -15,8 +15,8 @@ const Header = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto gap-4">{serverMessage === "Succesful Login" ? <Link to="/history"> History </Link> : ""}</Nav>
-          {serverMessage === "Succesful Login" ? "" : <Login />}
+          <Nav className="me-auto gap-4">{token ? <Link to="/history"> History </Link> : ""}</Nav>
+          {token ? "" : <Login />}
         </Navbar.Collapse>
       </Container>
     </Navbar>

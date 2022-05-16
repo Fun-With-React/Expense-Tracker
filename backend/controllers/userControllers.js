@@ -49,7 +49,7 @@ exports.login = async (req, res) => {
         name: user.name,
         email:user.email,
         token: generateToken(user._id),
-        
+        status: "Succesful Login",
       });
       return;
     } else {
