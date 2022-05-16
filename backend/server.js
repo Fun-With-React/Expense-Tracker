@@ -20,6 +20,9 @@ app.use(express.json());
 
 app.use(userRoutes);
 
+app.get("/", (req, res) => {
+  res.send("Hello expense tracker");
+});
 
 const PORT = process.env.PORT || 5000;
 
