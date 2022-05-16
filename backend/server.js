@@ -1,6 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const path = require('path')
+const path = require("path")
 const connectDB = require("./config/db.js");
 const userRoutes = require("./routes/userRoutes");
 const cors = require("cors");
@@ -15,6 +15,10 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 app.use(cors(corsOptions));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.use(userRoutes);
 
 const __dirname = path.resolve()
 if(process.env.NODE_ENV === 'production'){
@@ -28,10 +32,7 @@ if(process.env.NODE_ENV === 'production'){
     res.send('API is running...')
   })
 }
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 
-app.use(userRoutes);
 
 
 const PORT = process.env.PORT || 5000;
