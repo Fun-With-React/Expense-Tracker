@@ -5,15 +5,20 @@ export const loginSlice = createSlice({
   initialState: {
     serverMessage: "",
     user: 0,
+    token:JSON.parse(localStorage.getItem('token'))
   },
   reducers: {
     loginSubmit: (state, action) => {
       state.serverMessage = action.payload;
+      
     },
+    saveToken: (state,action) => {
+      state.token = action.payload
+    }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { loginSubmit } = loginSlice.actions;
+export const { loginSubmit,saveToken } = loginSlice.actions;
 
 export default loginSlice.reducer;
