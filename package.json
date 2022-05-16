@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "description": "my project",
   "main": "server.js",
+  
   "scripts": {
-    "start": "nodemon backend/server",
-    "dev": "concurrently \"cd backend && npm run start\" \"cd frontend && npm start\" ", 
-    "local": "nodemon backend/server"
-    
+    "start": "node backend/server",
+    "local": "nodemon backend/server",
+    "dev": "concurrently \"cd backend && npm run local\" \"cd frontend && npm start\" "
   },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Purnima-1/Expense-Tracker-1.git"
@@ -28,10 +29,10 @@
     "express": "^4.18.1",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.3.2"
+    "mongoose": "^6.3.2",
+    "nodemon": "^2.0.16"
   },
   "devDependencies": {
-    "concurrently": "^7.1.0",
-    "nodemon": "^2.0.16"
+    "concurrently": "^7.1.0"
   }
 }
