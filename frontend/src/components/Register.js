@@ -12,7 +12,7 @@ const Register = () => {
 
     axios({
       method: "POST",
-      url: "http://localhost:5000/register",
+      url: `${"http://localhost:5000/register"}` || `${"https://mysterious-plains-81897.herokuapp.com/register"}`,
       data: formDataObj,
       headers: { "Content-Type": "application/json" },
     })
