@@ -5,23 +5,22 @@ export const loginSlice = createSlice({
   initialState: {
     serverMessage: "",
     user: 0,
-    token:JSON.parse(localStorage.getItem('token'))
+    token: localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : "",
   },
   reducers: {
     loginSubmit: (state, action) => {
       state.serverMessage = action.payload;
-      
     },
-    saveToken: (state,action) => {
-      state.token = action.payload
+    saveToken: (state, action) => {
+      state.token = action.payload;
     },
-    logOut: (state) =>{
-        state.token = localStorage.removeItem('token')
-    }
+    logOut: (state) => {
+      state.token = localStorage.removeItem("token");
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { loginSubmit,saveToken,logOut } = loginSlice.actions;
+export const { loginSubmit, saveToken, logOut } = loginSlice.actions;
 
 export default loginSlice.reducer;

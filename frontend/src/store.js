@@ -6,4 +6,5 @@ export default configureStore({
     loginSlice: loginSlice,
     expenseSlice: expenseSlice,
   },
+  devTools: process.env.NODE_ENV !== "production",
 });

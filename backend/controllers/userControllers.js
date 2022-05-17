@@ -1,9 +1,9 @@
 const bcrypt = require("bcryptjs");
 const Users = require("../schema/userModel");
-const generateToken = require('../utils/generateToken')
+const generateToken = require("../utils/generateToken");
 
 exports.register = async (req, res) => {
-  const { name, email, confirmEmail, password } = req.body;
+  const { name, email, password } = req.body;
 
   const userExists = await Users.findOne({ email });
 
@@ -23,11 +23,10 @@ exports.register = async (req, res) => {
       res.status(201).json({
         _id: user._id,
         name: user.name,
-        email:user.email,
-        token:generateToken(user._id),
-        //status: "Registered Succesful",
+        email: user.email,
+        token: generateToken(user._id),
+        status: "Registered Succesful",
       });
-      console.log(token)
       return;
     }
   } catch (error) {
@@ -47,7 +46,7 @@ exports.login = async (req, res) => {
       res.json({
         _id: user._id,
         name: user.name,
-        email:user.email,
+        email: user.email,
         token: generateToken(user._id),
         status: "Succesful Login",
       });

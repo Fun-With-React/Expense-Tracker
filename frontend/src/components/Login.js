@@ -1,43 +1,48 @@
 import { Button, Form, Stack } from "react-bootstrap";
-import { saveToken } from "../reducers/userReducer";
+import { saveToken, loginSubmit } from "../reducers/userReducer";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 const Login = () => {
   const dispatch = useDispatch();
-  const { token } = useSelector((state) => state.loginSlice);
+  const { serverMessage } = useSelector((state) => state.loginSlice);
+  let url;
+  if (window.location.href === "http://localhost:3000/") {
+    url = "http://localhost:5000/login";
+  }
+  if (window.location.href !== "http://localhost:3000/") {
+    url = "https://mysterious-plains-81897.herokuapp.com/login";
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target),
       formDataObj = Object.fromEntries(formData.entries());
     axios({
       method: "POST",
-      url: "http://localhost:5000/login",
+      url: url,
       data: formDataObj,
       headers: { "Content-Type": "application/json" },
     })
       .then(function (response) {
         dispatch(saveToken(response.data.token));
+
+        dispatch(loginSubmit(response.data.status));
         //handle success
       })
       .catch(function (err) {
-        dispatch(saveToken(err.response.data.status));
-
+        dispatch(loginSubmit(err.response.data.status));
         //handle error
       });
   };
 
-  
   return (
     <>
       <Form onSubmit={handleSubmit}>
         <Stack direction="horizontal" className="" gap={3}>
-          {token ? (
+          {serverMessage ? (
             <div className="alert alert-warning mb-0 p-2" role="alert">
-              {token}
-             
+              {serverMessage}
             </div>
           ) : (
-
             ""
           )}
           <Form.Group className="mb-0" controlId="formBasicEmail">
@@ -49,7 +54,6 @@ const Login = () => {
           <Button variant="primary" type="submit">
             Login
           </Button>
-          
         </Stack>
       </Form>
     </>
