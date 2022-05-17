@@ -4,8 +4,9 @@
   "description": "my project",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon backend/server",
-    "dev": "concurrently \"cd backend && npm run start\" \"cd frontend && npm start\" "
+    "start": "node backend/server",
+    "local": "nodemon backend/server",
+    "dev": "concurrently \"cd backend && npm run local\" \"cd frontend && npm start\" "
   },
   "repository": {
     "type": "git",
