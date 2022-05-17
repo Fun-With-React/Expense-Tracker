@@ -4,6 +4,13 @@ import { useState } from "react";
 
 const Register = () => {
   const [message, setMessage] = useState("");
+  let url;
+  if (window.location.href === "http://localhost:3000/") {
+    url = "http://localhost:5000/register";
+  }
+  if (window.location.href !== "http://localhost:3000/") {
+    url = "https://mysterious-plains-81897.herokuapp.com/register";
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target),
@@ -12,7 +19,7 @@ const Register = () => {
 
     axios({
       method: "POST",
-      url: `${"http://localhost:5000/register"}` || `${"https://mysterious-plains-81897.herokuapp.com/register"}`,
+      url: url,
       data: formDataObj,
       headers: { "Content-Type": "application/json" },
     })

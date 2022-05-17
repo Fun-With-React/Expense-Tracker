@@ -3,7 +3,7 @@ const Users = require("../schema/userModel");
 const generateToken = require("../utils/generateToken");
 
 exports.register = async (req, res) => {
-  const { name, email, confirmEmail, password } = req.body;
+  const { name, email, password } = req.body;
 
   const userExists = await Users.findOne({ email });
 

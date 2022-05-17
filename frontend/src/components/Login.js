@@ -5,13 +5,20 @@ import axios from "axios";
 const Login = () => {
   const dispatch = useDispatch();
   const { serverMessage } = useSelector((state) => state.loginSlice);
+  let url;
+  if (window.location.href === "http://localhost:3000/") {
+    url = "http://localhost:5000/login";
+  }
+  if (window.location.href !== "http://localhost:3000/") {
+    url = "https://mysterious-plains-81897.herokuapp.com/login";
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target),
       formDataObj = Object.fromEntries(formData.entries());
     axios({
       method: "POST",
-      url: `${"http://localhost:5000/login"}` || `${"https://mysterious-plains-81897.herokuapp.com/login"}`,
+      url: url,
       data: formDataObj,
       headers: { "Content-Type": "application/json" },
     })
